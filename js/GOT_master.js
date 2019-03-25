@@ -7,8 +7,14 @@
 			lightBox	= document.querySelector('.lightBox'),
 			video = document.querySelector('video'),
 			closeLB = document.querySelector('.lightbox-close'),
-			banner = document.querySelector("#houseImages");
+			banner = document.querySelector('#houseImages'),
+			houseName = document.querySelector('.house-name'),
+			houseInfo = document.querySelector('.house-info');
 
+			const houseData = [
+			'House Stark of Winterfell is a Great House of Westeros, ruling over the vast region known as the North from their seat in Winterfell. It is one of the oldest lines of Westerosi nobility by far, claiming a line of descent stretching back over eight thousand years. Before the Targaryen conquest, as well as during the War of the Five Kings and Daenerys Targaryens invasion of Westeros, the leaders of House Stark ruled over the region as the Kings in the North.'
+
+			];
 	
 	function showLightbox() {
 		// grab the right video source
@@ -20,6 +26,12 @@
 		// stark becomes Stark -> first make a capital S then add ark (or any house name)
 
 		let targetSrc = targetHouse.charAt(0).toUpperCase() + targetHouse.slice(1);
+
+		// change the paragraph text
+		houseName.textContent =`House ${targetSrc}`;
+
+		//this will only ever get you the first index in the array, which is stark data
+		houseInfo.textContent = houseData[0];
 
 		video.src = `video/House-${targetSrc}.mp4`;
 
@@ -50,7 +62,8 @@
 
 
 
-	//shields.forEach(shield => shield.addEventListener('click', showLightbox));
+	shields.forEach(shield => shield.addEventListener('click', showLightbox));
+	
 	shields.forEach(shield => shield.addEventListener("click", animateBanner));
 
 	video.addEventListener('ended', hideLightbox);
